@@ -1,0 +1,19 @@
+== System ==
+OK    WSL (6.18.54.1-microsoft-standard-WSL2)
+== Git ==
+OK    git version 2.43.0
+OK    user.name = Maksim Lakoseljac
+OK    user.email = maksim.lakoseljac@gmail.com
+== GitHub CLI ==
+OK    gh version 2.45.0 (2025-07-18 Ubuntu 2.45.0-1ubuntu0.3)
+OK    logged in as Maksim535
+== Python ==
+OK    Python 3.12
+OK    active venv: /home/maksim53/praktikum-Maksim535/.venv
+OK    requirements.txt exists
+== Repository ==
+OK    git repository: https://github.com/unipu-praktikum-razvojne-operacije/praktikum-Maksim535.git
+OK    .venv/ is in .gitignore
+OK    .env is in .gitignore
+
+Result: 12 OK, 0 FAILED
