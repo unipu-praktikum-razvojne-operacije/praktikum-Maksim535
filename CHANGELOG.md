@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/unipu-praktikum-razvojne-operacije/praktikum-Maksim535/compare/v1.1.0...v1.2.0) (2026-10-21)
+
+
+### Features
+
+* add Ollama client, CLI and tests ([5b3ccba](https://github.com/unipu-praktikum-razvojne-operacije/praktikum-Maksim535/commit/5b3ccbafab4f4a51968d6017f2b8d5d99b70f613))
+
 ## [1.1.0](https://github.com/unipu-praktikum-razvojne-operacije/praktikum-Maksim535/compare/v1.0.0...v1.1.0) (2026-10-20)
 
 
