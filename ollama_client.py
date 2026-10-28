@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DEFAULT_BASE_URL = "http://localhost:11434"
-DEFAULT_MODEL = "llama3.2:1b"
+DEFAULT_BASE_URL = os.getenv("DEFAULT_BASE_URL", "http://localhost:11434")
+DEFAULT_MODEL = os.getenv("DEFAULT_MODEL", "llama3.2:1b")
 TIMEOUT_SECONDS = 120
 
 

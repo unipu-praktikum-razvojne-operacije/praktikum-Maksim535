@@ -1,9 +1,21 @@
 """Command line interface for talking to a local Ollama model."""
+
+import signal
+from pathlib import Path
+
 import argparse
 import sys
-
 import ollama_client
 
+VERSION_FILE = Path(__file__).with_name("version.txt")
+
+
+def read_version() -> str:
+    """Returns the version from version.txt (bumped by release-please), or 0.0.0 when the file is missing."""
+    try:
+        return VERSION_FILE.read_text(encoding="utf-8").strip()
+    except FileNotFoundError:
+        return "0.0.0"
 
 def cmd_status(args: argparse.Namespace) -> int:
     if ollama_client.is_running():
@@ -40,6 +52,7 @@ def cmd_chat(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="llm", description="Talk to a local Ollama model.")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {read_version()}")
     parser.add_argument("--model", default=None, help="model name (default: OLLAMA_MODEL or llama3.2:1b)")
     parser.add_argument("--system", default=None, help="optional system prompt")
     subcommands = parser.add_subparsers(dest="command", required=True)
@@ -55,7 +68,13 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def _exit_on_sigterm(signum, frame) -> None:
+    # `docker stop` sends SIGTERM to PID 1. Python ignores it there unless a handler exists.
+    raise SystemExit(128 + signum)
+
+
 def main() -> int:
+    signal.signal(signal.SIGTERM, _exit_on_sigterm)
     args = build_parser().parse_args()
     try:
         return args.handler(args)
